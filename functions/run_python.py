@@ -8,13 +8,18 @@ schema_run_python_file = types.FunctionDeclaration(
     parameters=types.Schema(
         type=types.Type.OBJECT,
         properties={
-            "directory": types.Schema(
+            "file_path": types.Schema(
                 type=types.Type.STRING,
-                description="The directory to list files from, relative to the working directory. If not provided, lists files in the working directory itself.",
+                description="The path to run file from, relative to the working directory.",
             ),
+            "arguments": types.Schema(
+                type=types.Type.ARRAY,
+                description="Optional list of arguments to pass to the Python file.",
+                items=types.Schema(types.Type.STRING),
+                )
         },
     ),
-)
+    )
 
 def run_python_file(working_directory, file_path):
     if os.path.isabs(file_path):
