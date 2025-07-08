@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 from google import genai
 from google.genai import types
 from functions.get_files_info import schema_get_files_info
+from functions.get_file_contents import schema_get_file_content
 
 load_dotenv()
 api_key = os.environ.get("GEMINI_API_KEY")
