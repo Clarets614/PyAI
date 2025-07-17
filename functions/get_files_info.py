@@ -16,9 +16,13 @@ schema_get_files_info = types.FunctionDeclaration(
 )
 
 def get_files_info(working_directory, directory=None):
-    target_path = os.path.join(working_directory, directory)
+    if directory is None:
+        target_path = working_directory
+    else:
+        target_path = os.path.join(working_directory, directory)
     abs_working = os.path.abspath(working_directory)
     abs_dir = os.path.abspath(target_path)
+
     if not abs_dir.startswith(abs_working):
         return f'Error: Cannot list "{directory}" as it is outside the permitted working directory'
     if not os.path.isdir(target_path):
